@@ -31,7 +31,7 @@ main { font-size: 17px; line-height: 21px; }
 .logo img { display: block; width: min(235px, 60vw); height: auto; margin-top: 1px; } 
 .logo:hover { text-decoration: none; }
 .menu-toggle { padding: 0; border: 0; font: inherit; letter-spacing: inherit; color: inherit; background: none; cursor: pointer; }
-.letterhead, .sedi { color: var(--mute); }
+.letterhead { color: var(--mute); }
 .letterhead a:hover { color: var(--ink); text-decoration: none; }
 .menu__main > li > a[aria-current] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .menu__main ul { display: none; }
@@ -39,7 +39,7 @@ main { font-size: 17px; line-height: 21px; }
 .lang a:not([aria-current]) { color: var(--mute); }
 .lang a:hover { color: var(--ink); text-decoration: none; }
 @media (max-width: 991px) {
-  .letterhead, .sedi, .menu, .lang { display: none; }
+  .letterhead, .menu, .lang { display: none; }
   .menu-open { overflow: hidden; }
   .menu-open .site-header { height: 100dvh; overflow-y: auto; }
   .menu-open :is(.menu, .letterhead, .lang) { display: block; width: 100%; }
@@ -57,13 +57,12 @@ main { font-size: 17px; line-height: 21px; }
   .logo img { width: 235px; }
   .menu-toggle { display: none; }
   .letterhead { grid-column: 4 / 7; }
-  .sedi { grid-column: 7 / 10; }
-  .menu { grid-column: 10 / 12; }
+  .menu { grid-column: 7 / 10; }
   .lang { grid-column: 12; flex-direction: column; gap: 0; }
   .menu__main { position: relative; }
-  .menu__main ul { position: absolute; top: 0; right: 100%; width: calc(150% + 1.5 * var(--gap)); padding-right: var(--gap); }
-  .menu__main > li:hover > ul, .menu__main:not(:hover) > li:focus-within > ul { display: block; }
-  .site-header:has(.menu__main > li:hover > ul, .menu__main:not(:hover) > li:focus-within > ul) .sedi { visibility: hidden; }
+  .menu__main ul { position: absolute; top: 0; left: 100%; display: block; visibility: hidden; width: calc(200% / 3 + 2 * var(--gap) / 3); padding: 0 0 10px var(--gap); background: var(--bg); transition: visibility 0s .4s; }
+  .menu__main > li:hover > ul, .menu__main:not(:hover) > li:focus-within > ul { visibility: visible; transition-delay: 0s; }
+  .menu__main:has(> li:hover > ul) > li:not(:hover) > ul { visibility: hidden; transition-delay: 0s; }
 }
 main { flex: 1; padding-top: 59px; } 
 .has-hero main { padding-top: 44px; }
@@ -150,6 +149,7 @@ figure + .lead { margin-top: 45px; }
   .split figure { grid-column: 6 / -1; margin-top: 0; }
   .split--flip .split__text { grid-column: 6 / -1; }
   .split--flip figure { grid-column: 1 / span 5; grid-row: 1; }
+  .page-tecnologie .split__text { position: sticky; top: 15px; align-self: start; } 
 }
 .list { display: grid; grid-template-columns: subgrid; margin-top: 20px; }
 .list li { display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; padding: 5px 0; border-bottom: 1px solid var(--mute); transition: color .2s; }
@@ -166,18 +166,15 @@ figure + .lead { margin-top: 45px; }
 @media (min-width: 768px) { .works { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 992px) { .works { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (min-width: 1200px) { .works { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-.archivio { --tile: #f2f2f2; font: 400 12px/15px var(--font); letter-spacing: 0; text-transform: uppercase; }
-.archivio h1 { text-transform: none; }
-.archivio h2 { margin: 0 0 15px; font: inherit; }
+.archivio { --tile: #f2f2f2; } 
 .archivio__indice { margin-top: 10px; }
 .archivio__indice a[aria-current] { color: var(--mute); } 
 .archivio__intro { margin-top: 45px; }
 .archivio__intro p + p { margin-top: 15px; }
-.archivio__intro a { text-decoration: underline; }
 .archivio__griglia { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px var(--gap); margin-top: 60px; }
 .archivio__vuoto { margin-top: 60px; color: var(--mute); }
 .lavoro img { width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--tile); } 
-.lavoro__dati { margin-top: 10px; padding-left: 10px; border-left: 1px solid var(--mute); }
+.lavoro__dati { margin-top: 10px; padding-left: 10px; font-size: 15px; line-height: 17px; border-left: 1px solid var(--mute); }
 .lavoro__dati span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } 
 @media (min-width: 992px) {
   .archivio > .archivio__indice { grid-column: 3 / 7; }
