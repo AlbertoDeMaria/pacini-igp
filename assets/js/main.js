@@ -3,6 +3,7 @@ const toggle = document.querySelector('.menu-toggle');
 toggle?.addEventListener('click', () => {
   const open = toggle.getAttribute('aria-expanded') !== 'true';
   toggle.setAttribute('aria-expanded', String(open));
+  toggle.textContent = open ? 'Chiudi' : 'Menu';
   document.body.classList.toggle('menu-open', open);
 });
 const reveal = new IntersectionObserver(entries => {
@@ -18,8 +19,6 @@ if (video && pause) {
   pause.addEventListener('click', () => (video.paused ? video.play() : video.pause()));
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) video.play().catch(() => {});
 }
-const hero = document.querySelector('.hero');
-if (hero) new IntersectionObserver(([e]) => document.body.classList.toggle('at-hero', e.intersectionRatio === 1), { threshold: 1 }).observe(hero);
 document.querySelectorAll('.slider').forEach(slider => {
   const imgs = [...slider.children];
   const half = e => e.clientX < slider.getBoundingClientRect().left + slider.clientWidth / 2;
