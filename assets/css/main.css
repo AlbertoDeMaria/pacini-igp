@@ -72,11 +72,20 @@ main { flex: 1; padding-top: 59px; }
   .has-hero main { padding-top: 117px; }
   [id] { scroll-margin-top: 132px; }
 }
+.divisions { display: none; }
+@media (min-width: 992px) {
+  .divisions { position: fixed; bottom: 10px; left: 10px; z-index: 2; display: block; padding: 7.5px var(--edge) 0; transition: opacity .3s; } 
+  .divisions ul { display: flex; flex-direction: column; gap: 5px; }
+  .divisions a { padding-left: 5px; font-size: 28px; line-height: 30px; letter-spacing: -1px; }
+  .divisions a:not([aria-current]) { color: var(--mute); }
+  .divisions a:hover { color: var(--ink); text-decoration: none; }
+  .has-hero.at-hero .divisions { opacity: 0; pointer-events: none; }
+}
 .site-footer { padding: 0 var(--edge); font-size: 10px; line-height: 12px; color: var(--mute); }
 .site-footer a:hover { color: var(--ink); }
 @media (min-width: 992px) {
   .site-footer { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: end; min-height: 35px; padding-bottom: 5px; }
-  .site-footer p:first-child { grid-column: 1 / 10; }
+  .site-footer p:first-child { grid-column: 3 / 10; }
   .site-footer p:last-child { grid-column: 10 / -1; text-align: right; }
 }
 .panels { --cols: 6; display: grid; gap: var(--gap); }
@@ -107,11 +116,11 @@ figure + .lead { margin-top: 45px; }
 .aside { margin-top: 20px; }
 @media (min-width: 992px) {
   .page { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .page > * { grid-column: 1 / -1; }
+  .page > * { grid-column: 3 / -1; }
   .page > h1 { grid-column: 1 / -1; } 
-  .sec > .biglist, .sec > .form { grid-column: 1 / span 6; }
-  .sec > .body { grid-column: 7 / -1; } 
-  .sec > .aside { grid-column: 7 / -1; margin-top: 0; }
+  .sec > .biglist, .sec > .form { grid-column: 1 / span 5; }
+  .sec > .body { grid-column: 6 / -1; } 
+  .sec > .aside { grid-column: 6 / -1; margin-top: 0; }
   h2 + figure { margin-top: 0; }
   figure + .lead { margin-top: 70px; }
 }
@@ -145,17 +154,18 @@ figure + .lead { margin-top: 45px; }
 .split figure { margin-top: 25px; }
 .split figure img { aspect-ratio: 4 / 5; }
 @media (min-width: 992px) {
-  .split .split__text { grid-column: 1 / span 6; }
-  .split figure { grid-column: 7 / -1; margin-top: 0; }
-  .split--flip .split__text { grid-column: 7 / -1; }
-  .split--flip figure { grid-column: 1 / span 6; grid-row: 1; }
-  :is(.page-tecnologie, .page-azienda) .split__text { position: sticky; top: 132px; align-self: start; } 
+  .split .split__text { grid-column: 1 / span 5; }
+  .split figure { grid-column: 6 / -1; margin-top: 0; }
+  .split--flip .split__text { grid-column: 6 / -1; }
+  .split--flip figure { grid-column: 1 / span 5; grid-row: 1; }
+  .page-tecnologie .split__text { position: sticky; top: 132px; align-self: start; } 
 }
-.list { margin-top: 20px; }
-.list li { display: grid; padding: 5px 0; border-bottom: 1px solid var(--mute); transition: color .2s; }
+.list { display: grid; grid-template-columns: subgrid; margin-top: 20px; }
+.list li { display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; padding: 5px 0; border-bottom: 1px solid var(--mute); transition: color .2s; }
 .list:hover li:not(:hover) { color: var(--mute); }
 @media (min-width: 992px) {
-  .list li { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); }
+  .list li span:first-child { grid-column: 1 / span 5; }
+  .list li span:last-child { grid-column: 6 / -1; }
 }
 .works { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 60px var(--gap); }
 .work img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: opacity .5s ease-in-out; } 
@@ -176,9 +186,9 @@ figure + .lead { margin-top: 45px; }
 .lavoro__dati { margin-top: 10px; padding-left: 10px; font-size: 15px; line-height: 17px; border-left: 1px solid var(--mute); }
 .lavoro__dati span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } 
 @media (min-width: 992px) {
-  .archivio > .archivio__indice { grid-column: 1 / 7; }
-  .archivio > .archivio__intro { grid-column: 7 / -1; grid-row: 2; margin-top: 10px; }
-  .archivio > :is(.archivio__griglia, .archivio__vuoto) { grid-column: 1 / -1; }
+  .archivio > .archivio__indice { grid-column: 3 / 7; }
+  .archivio > .archivio__intro { grid-column: 8 / -1; grid-row: 2; margin-top: 10px; }
+  .archivio > :is(.archivio__griglia, .archivio__vuoto) { grid-column: 3 / -1; }
   .archivio__griglia { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 .sec--contacts > p { margin-bottom: 20px; }
